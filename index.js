@@ -187,7 +187,7 @@ async function serveResult(request) {
   if (result.includes('undefined')) {
     result = `{"success":false,"message":"Cannot find nickname from your request."}`
   }
-  if (result.success == false) {
+  if (JSON.parse(result).success == false) {
     code = 400
   }
   result = result.replace(/\u002B/g, ' ')
