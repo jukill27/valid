@@ -183,7 +183,7 @@ async function callAPI(request) {
 }
 async function serveResult(request) {
   let code = 200
-  let result = await JSON.stringify(callAPI(request))
+  let result = await callAPI(request)
   if (result.includes('undefined')) {
     result = `{"success":false,"message":"Cannot find nickname from your request."}`
   }
