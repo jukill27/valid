@@ -192,12 +192,18 @@ async function serveResult(request) {
     code = 400
   }
   result = result.replace(/\u002B/g, ' ')
+  if (dc == false){
+    result = result
+  }
+  if (!dc || dc == true || dc) {
+    result = decodeURIComponent(result)
+  }
   let response = new Response(result, {
     status: code,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Method': 'GET',
-      //'Cache-Control': 'max-age=600',
+      'Cache-Control': 'max-age=60',
       'Content-Type': 'application/json; charset=utf-8',
     }
   })
