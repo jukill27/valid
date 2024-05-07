@@ -192,11 +192,11 @@ async function serveResult(request) {
     code = 400
   }
   result = result.replace(/\u002B/g, ' ')
+  if (!dc || dc == true || dc != false) {
+    result = decodeURIComponent(result)
+  }
   if (dc == false){
     result = result
-  }
-  if (!dc || dc == true || dc) {
-    result = decodeURIComponent(result)
   }
   let response = new Response(result, {
     status: code,
