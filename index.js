@@ -183,11 +183,11 @@ async function callAPI(request) {
 }
 async function serveResult(request) {
   let code = 200
-  let result = await callAPI(request)
+  let result = await JSON.stringify(callAPI(request))
   if (result.includes('undefined')) {
     result = `{"success":false,"message":"Cannot find nickname from your request."}`
   }
-  if (result.includes(`"success":false`)) {
+  if (result.success == false) {
     code = 400
   }
   result = result.replace(/\u002B/g, ' ')
@@ -197,7 +197,7 @@ async function serveResult(request) {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Method': 'GET',
-      'Cache-Control': 'max-age=600',
+      //'Cache-Control': 'max-age=600',
       'Content-Type': 'application/json; charset=utf-8',
     }
   })
