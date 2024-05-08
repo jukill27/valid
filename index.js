@@ -171,6 +171,22 @@ async function callAPI(request) {
       let result = `{"success":true,"game":"Super Sus","id":${id},"name":"${data.confirmationFields.username}"}`
       return result
     }
+    if (path.includes('/valo')){
+      const body = `voucherPricePoint.id=115691&voucherPricePoint.price=15000.0&voucherPricePoint.variablePrice=0&user.userId=${id}&user.zoneId=&msisdn=&voucherTypeName=VALORANT&voucherTypeId=109&gvtId=139&shopLang=id_ID`
+      const request = new Request(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body
+      })
+      const response = await fetch(request)
+      const data = await response.json()
+      if (data.success == true || data.errorCode == -200){
+        let result = `{"success":true,"game":"Valorant","name":"${encodeURIComponent(data.confirmationFields.userId)}"}`
+      return result
+      }
+    }
     else {
       let result = `{"success":false,"message":"Bad request"}`
       return result
