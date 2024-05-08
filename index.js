@@ -201,7 +201,7 @@ async function serveResult(request) {
   let dc = new URL(request.url).searchParams.get('decode')
   let code = 200
   let result = await callAPI(request)
-  if (JSON.parse(result).name == undefined) {
+  if (result.name == undefined) {
     result = `{"success":false,"message":"Cannot find nickname from your request."}`
   }
   if (JSON.parse(result).success == false) {
