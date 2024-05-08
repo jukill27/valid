@@ -185,6 +185,9 @@ async function callAPI(request) {
       if (data.success == true || data.errorCode == -200){
         let result = `{"success":true,"game":"Valorant","name":"${encodeURIComponent(data.confirmationFields.userId)}"}`
       return result
+      } else if (data.errorCode == -100) {
+        let result = `{"success":false,"message":"Cannot find nickname from your request."}`
+        return result
       }
     }
     else {
@@ -201,9 +204,6 @@ async function serveResult(request) {
   let dc = new URL(request.url).searchParams.get('decode')
   let code = 200
   let result = await callAPI(request)
-  if (result.includes(undefined)){
-    result = `{"success":false,"message":"Cannot find nickname from your request."}`
-  }
   if (JSON.parse(result).success == false) {
     code = 400
   }
