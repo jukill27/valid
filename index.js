@@ -101,6 +101,20 @@ async function callAPI(request) {
       let result = `{"success":true,"game":"Mobile Legends: Bang Bang","id":${id},"zoneId":${zone},"name":"${data.confirmationFields.username}"}`
       return result
     }
+    if (path.includes('/valo')) {
+      const body = `voucherPricePoint.id=115691&voucherPricePoint.price=15000.0&voucherPricePoint.variablePrice=0&user.userId=yuyun%23123&voucherTypeName=VALORANT&voucherTypeId=109&gvtId=139&shopLang=id_ID`
+      const request = new Request(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body
+      })
+      const response = await fetch(request)
+      const data = await response.json()
+      let result = `{"success":true,"game":"VALORANT","id":"${id}","name":"${data.confirmationFields.username}"}`
+      return result
+    }
     if (path.includes('/sm')) {
       const body = `voucherPricePoint.id=256513&voucherPricePoint.price=16000.0&voucherPricePoint.variablePrice=0&user.userId=${id}&user.zoneId=global-release&voucherTypeName=SAUSAGE_MAN&shopLang=id_ID`
       const request = new Request(endpoint, {
@@ -169,20 +183,6 @@ async function callAPI(request) {
       const response = await fetch(request)
       const data = await response.json()
       let result = `{"success":true,"game":"Super Sus","id":${id},"name":"${data.confirmationFields.username}"}`
-      return result
-    }
-    if (path.includes('/valo')){
-      const body = `voucherPricePoint.id=115691&voucherPricePoint.price=15000.0&voucherPricePoint.variablePrice=0&user.userId=${id}&user.zoneId=&msisdn=&voucherTypeName=VALORANT&voucherTypeId=109&gvtId=139&shopLang=id_ID`
-      const request = new Request(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body
-      })
-      const response = await fetch(request)
-      const data = response.json()
-      let result = `{"success":true,"game":"Valorant","name":"${data.confirmationFields.userId}"}`
       return result
     }
     else {
