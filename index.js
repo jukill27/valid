@@ -112,8 +112,16 @@ async function callAPI(request) {
       })
       const response = await fetch(request)
       const data = await response.json()
-      let result = `{"success":true,"game":"VALORANT","id":"${id}","name":"${data.confirmationFields.username}"}`
-      return result
+      if (data.success == true) {
+        let result = `{"success":true,"game":"VALORANT","id":"${id}", "region": "Indonesia", "name":"${data.confirmationFields.username}"}`
+        return result
+      } else if (data.errorCode == -200) {
+        let result = `{"success":true,"game":"VALORANT","id":"${id}", "region": "unknown", "name":"${data.confirmationFields.userId}"}`
+        return result
+      } else {
+        let result = `{"success":false,"message":"Cannot find nickname from your request."}`
+        return result
+      }
     }
     if (path.includes('/sm')) {
       const body = `voucherPricePoint.id=256513&voucherPricePoint.price=16000.0&voucherPricePoint.variablePrice=0&user.userId=${id}&user.zoneId=global-release&voucherTypeName=SAUSAGE_MAN&shopLang=id_ID`
