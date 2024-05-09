@@ -181,14 +181,9 @@ async function callAPI(request) {
         body
       })
       const response = await fetch(request)
-      const data = await response.json()
-      if (data.success == true || data.errorCode == -200){
-        let result = `{"success":true,"game":"Valorant","name":"${encodeURIComponent(data.confirmationFields.userId)}"}`
+      const data = response.json()
+      let result = `{"success":true,"game":"Valorant","name":"${data.confirmationFields.username}"}`
       return result
-      } else if (data.errorCode == -100) {
-        let result = `{"success":false,"message":"Cannot find nickname from your request."}`
-        return result
-      }
     }
     else {
       let result = `{"success":false,"message":"Bad request"}`
