@@ -102,7 +102,7 @@ async function callAPI(request) {
       return result
     }
     if (path.includes('/valo')) {
-      const body = `voucherPricePoint.id=115691&voucherPricePoint.price=15000.0&voucherPricePoint.variablePrice=0&user.userId=yuyun%23123&voucherTypeName=VALORANT&voucherTypeId=109&gvtId=139&shopLang=id_ID`
+      const body = `voucherPricePoint.id=115691&voucherPricePoint.price=15000.0&voucherPricePoint.variablePrice=0&user.userId=${id}&voucherTypeName=VALORANT&voucherTypeId=109&gvtId=139&shopLang=id_ID`
       const request = new Request(endpoint, {
         method: 'POST',
         headers: {
