@@ -113,10 +113,10 @@ async function callAPI(request) {
       const response = await fetch(request)
       const data = await response.json()
       if (data.success == true) {
-        let result = `{"success":true,"game":"VALORANT","id":"${id}", "region": "Indonesia", "name":"${data.confirmationFields.username}"}`
+        let result = `{"success":true,"game":"VALORANT","id":"${id}","region": "Indonesia","name":"${data.confirmationFields.username}"}`
         return result
       } else if (data.errorCode == -200) {
-        let result = `{"success":true,"game":"VALORANT","id":"${id}", "region": "unknown", "name":"${data.confirmationFields.userId}"}`
+        let result = `{"success":true,"game":"VALORANT","id":"${id}","region": "unknown","name":"${data.confirmationFields.userId}"}`
         return result
       } else {
         let result = `{"success":false,"message":"Cannot find nickname from your request."}`
