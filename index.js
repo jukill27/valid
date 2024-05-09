@@ -182,7 +182,7 @@ async function callAPI(request) {
       })
       const response = await fetch(request)
       const data = response.json()
-      let result = `{"success":true,"game":"Valorant","name":"${data.confirmationFields.username}"}`
+      let result = `{"success":true,"game":"Valorant","name":"${data.confirmationFields.userId}"}`
       return result
     }
     else {
